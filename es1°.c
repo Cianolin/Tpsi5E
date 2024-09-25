@@ -60,9 +60,20 @@ void evenN(int Vettore[])
         {
             printf("%d,", Vettore[i]);
         }
+    } }
+// 5. Visualizza dispari
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n-1; i++) {
+        for (int j = 0; j < n-i-1; j++) {
+            if (arr[j] > arr[j+1]) {
+                // Scambia arr[j] e arr[j+1]
+                int temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
     }
 }
-// 5. Visualizza dispari
 void oddN(int Vettore[])
 {
     for (int i = 0; i < nVettore; i++)
@@ -115,6 +126,7 @@ int* Alterni(int vettore[])
     int *x=vettore2;
     return x;
 }
+//bubble sort
 void stampaArray(int *vettore)
 {
     for (int i = 0; i < nVettore; i++)
