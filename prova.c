@@ -27,7 +27,7 @@ int main() {
     printf("Array originale: ");
     stampaArray(arr, n);
     
-    eliminaElemento(arr, &n, 2); // Elimina l'elemento all'indice 2
+    eliminaElemento(arr, &n, 3); // Elimina l'elemento all'indice 2
     
     printf("Array dopo l'eliminazione: ");
     stampaArray(arr, n);
