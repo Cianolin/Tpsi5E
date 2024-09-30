@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #define DIM 1024
-
-int contiene_lettere(char stringa[]) { // punto 1
+//1
+int contiene_lettere(char stringa[]) {
   for (int i = 0; i < strlen(stringa); i++) {
     if (!(stringa[i] >= 'A' && stringa[i] <= 'Z' ||
           stringa[i] >= 'a' && stringa[i] <= 'z')) {
@@ -13,18 +13,18 @@ int contiene_lettere(char stringa[]) { // punto 1
   }
   return 1;
 }
-
-int conta_lettere(char stringa[], char car) { // punto 2
-  int conta = 0;
+//2
+int conta_lettere(char stringa[], char car) { 
+  int count = 0;
   for (int i = 0; i < strlen(stringa); i++) {
     if (stringa[i] == car) {
-      conta++;
+      count++;
     }
   }
-  return conta;
+  return count;
 }
-
-void crea_stringhe(char stringa[], char s_pari[], char s_dispari[]) { // punto 3
+//3
+void crea_stringhe(char stringa[], char s_pari[], char s_dispari[]) {
   int pari = 0, dispari = 0;
   for (int i = 0; i < strlen(stringa); i++) {
     if (i % 2 == 0) {
@@ -36,8 +36,8 @@ void crea_stringhe(char stringa[], char s_pari[], char s_dispari[]) { // punto 3
   s_pari[pari] = '\0';
   s_dispari[dispari] = '\0';
 }
-
-int contiene_doppie(char stringa[]) { // punto 4
+//4
+int contiene_doppie(char stringa[]) {
   for (int i = 0; i < strlen(stringa) - 1; i++) {
     if (stringa[i] == stringa[i + 1]) {
       return 1;
@@ -45,8 +45,8 @@ int contiene_doppie(char stringa[]) { // punto 4
   }
   return 0;
 }
-
-int confronta(char stringa1[], char stringa2[]) { // punto 1.1
+//1 2°
+int confronta(char stringa1[], char stringa2[]) {
   if (strlen(stringa1) == strlen(stringa2)) {
     return -1;
   } else if (strlen(stringa1) < strlen(stringa2)) {
@@ -55,14 +55,14 @@ int confronta(char stringa1[], char stringa2[]) { // punto 1.1
     return 1;
   }
 }
-
+//2 2°
 int verifica_lettera(char lettera) {
   return (lettera == 'a' || lettera == 'e' || lettera == 'i' ||
           lettera == 'o' || lettera == 'u' || lettera == 'A' ||
           lettera == 'E' || lettera == 'I' || lettera == 'O' || lettera == 'U');
 }
-
-int conta_vocali(char stringa[]) { // 1.3
+//3 2°
+int conta_vocali(char stringa[]) {
   int conta = 0;
   for (int i = 0; i < strlen(stringa); i++) {
     if (verifica_lettera(stringa[i])) {
@@ -71,8 +71,8 @@ int conta_vocali(char stringa[]) { // 1.3
   }
   return conta;
 }
-
-int conta_consonanti(char stringa[]) { // 1.4
+//4 2°
+int conta_consonanti(char stringa[]) {
   int conta = 0;
   for (int i = 0; i < strlen(stringa); i++) {
     if ((stringa[i] >= 'A' && stringa[i] <= 'Z' ||
