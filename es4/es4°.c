@@ -14,56 +14,101 @@ Buon lavoro!La consegna dovrà contenere il codice (su git) e una relazione dett
 
 In allegato, qui, trovate il file da cui pescare i libri per popolare correttamente la libreria.
 */
-typedef struct{
-    char romanzo[20]="romanzo";
-    char narrativa[20]="narrativa";
-}categoria;
-typedef struct{
+typedef enum {
+    ADVENTURE,
+    HISTORICAL_FICTION,
+    LITERARY_FICTION,
+    MEMOIR,
+    MODERNIST,
+    MYSTERY,
+    PHILOSOPHICAL,
+    POETRY,
+    ROMANCE,
+    CATEGORY_COUNT
+} Categoria;
+typedef struct
+{
     char title[40];
     char author[40];
     int year;
     float price;
-    categoria genere;
-}libro;
-void read(){
-    libro book;
+    Categoria genere;
+} Libro;
+typedef struct 
+{
+    libro books;
+    Categoria cat;
+}Library;
+
+void read()
+{
+    Libro book;
+    char c;
     char stringa[40];
     int count;
     FILE *fp;
-    if(fopen(argv[2], "r")==null){
-     printf("File non trovato\n");
-     return 0;
+    Libro *libro = (Libro *)malloc(sizeof(Libro));
+    if (fopen(argv[2], "r") == null)
+    {
+        printf("File non trovato\n");
+        return 0;
     }
-    while ((c = fgetc(fp)) != EOF) {
-        if(c=='\n'){
-         count=0;    
-        }else{
-            if(c!=','){
-            stringa+=c;
-        }else{
-            if(count==0){
-            book.title=stringa;
-            }else if(count==1){
-                book.author=stringa;
-            }
-            stringa="";
-            count++;
+    while ((c = fgetc(fp)) != EOF)
+    {
+        if (c == '\n')
+        {
+            free(book);
+            count = 0;
         }
+        else
+        {
+            if (c != ',')
+            {
+                stringa += c;
+            }
+            else
+            {
+                if (count == 0)
+                {
+                    strcpy(book.title, stringa);
+                }
+                else if (count == 1)
+                {
+                    strcpy(book.author, stringa);
+                    book.author = stringa;
+                }
+                else if (count == 2)
+                {
+                    book.year = atoi(stringa);
+                }
+                else if (count == 3)
+                {
+                    book.price = atof(stringa)
+                }
+                stringa = "";
+                count++;
+            }
+        }
+    }
+}
+void GestioneCategoria(libro libray[], int size)
+{
+    for (int i = 0; i < CATEGORY_COUNT; i++)
+    {
+        Categoria cat=i;
+        for (int x = 0; x < size; x++)
+    {
+        if (library[x].categoria ==cat){
 
-        
-        
-        
+        }
+    }
     }
     
-}
-void GestioneCategoria(libro libray[], int size){
-    for(int i=0; i<size;i++){
-        if(library[i].categoria==)
-    }
+    
 }
 int main()
 {
-    libro library[];
+    Library libreria[]; 
     int size = sizeof(library) / sizeof(library[0]);
     return 0;
 }
