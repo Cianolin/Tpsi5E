@@ -38,15 +38,18 @@ void read(){
         if(c=='\n'){
          count=0;    
         }else{
-            if(count==0){
             if(c!=','){
             stringa+=c;
         }else{
+            if(count==0){
             book.title=stringa;
+            }else if(count==1){
+                book.author=stringa;
+            }
             stringa="";
             count++;
         }
-        }
+
         
         
         
