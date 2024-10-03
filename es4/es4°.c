@@ -14,6 +14,8 @@ Buon lavoro!La consegna dovrà contenere il codice (su git) e una relazione dett
 
 In allegato, qui, trovate il file da cui pescare i libri per popolare correttamente la libreria.
 */
+
+DIM 512
 typedef enum {
     ADVENTURE,
     HISTORICAL_FICTION,
@@ -36,13 +38,14 @@ typedef struct
 } Libro;
 typedef struct 
 {
-    libro books;
+    Libro books[];
     Categoria cat;
 }Library;
 
 void read()
 {
     Libro book;
+    Libro books[]
     char c;
     char stringa[40];
     int count;
@@ -57,6 +60,7 @@ void read()
     {
         if (c == '\n')
         {
+
             free(book);
             count = 0;
         }
@@ -112,3 +116,11 @@ int main()
     int size = sizeof(library) / sizeof(library[0]);
     return 0;
 }
+/*
+struct MioStruct {
+    int campo1;
+    float campo2;
+};
+
+struct MioStruct* array = (struct MioStruct*)malloc(n * sizeof(struct MioStruct));
+*/
