@@ -14,9 +14,9 @@ Buon lavoro!La consegna dovrà contenere il codice (su git) e una relazione dett
 
 In allegato, qui, trovate il file da cui pescare i libri per popolare correttamente la libreria.
 */
-
-DIM 512
-typedef enum {
+#define DIM 512
+typedef enum
+{
     ADVENTURE,
     HISTORICAL_FICTION,
     LITERARY_FICTION,
@@ -36,91 +36,104 @@ typedef struct
     float price;
     Categoria genere;
 } Libro;
-typedef struct 
-{
-    Libro books[];
-    Categoria cat;
-}Library;
 
-void read()
+typedef struct
 {
-    Libro book;
-    Libro books[]
+    Libro book[40];
+    Categoria cat;
+} Library;
+
+void read(char *argv[], Libro Library[])
+{
     char c;
+    int libroIndex = 0;
     char stringa[40];
-    int count;
-    FILE *fp;
-    Libro *libro = (Libro *)malloc(sizeof(Libro));
-    if (fopen(argv[2], "r") == null)
+    int count=0;
+    FILE *fp = fopen(argv[1], "r");
+    if (fp == NULL)
     {
         printf("File non trovato\n");
-        return 0;
+        exit(1);
+    }
+    Libro *book = malloc(sizeof(Libro));
+    if (book == NULL)
+    {
+        printf("Memoria non allocata\n");
+        exit(1);
     }
     while ((c = fgetc(fp)) != EOF)
     {
-        if (c == '\n')
-        {
-
-            free(book);
-            count = 0;
-        }
-        else
+        if (c !='\n')
         {
             if (c != ',')
             {
-                stringa += c;
+                stringa[strlen(stringa)] = c;
+                strcpy(stringa, "");
             }
             else
             {
                 if (count == 0)
                 {
-                    strcpy(book.title, stringa);
+                    strcpy(book->title, stringa);
                 }
                 else if (count == 1)
                 {
-                    strcpy(book.author, stringa);
-                    book.author = stringa;
+                    strcpy(book->author, stringa);
                 }
                 else if (count == 2)
                 {
-                    book.year = atoi(stringa);
+                    book->year = atoi(stringa);
                 }
                 else if (count == 3)
                 {
-                    book.price = atof(stringa)
+                    book->price = atof(stringa);
                 }
-                stringa = "";
+                strcpy(stringa, "");
                 count++;
+            }
+        }
+        else
+        {
+            Libro libro = *book;
+            Library[libroIndex] = libro;
+            libroIndex++;
+            free(book);
+            count = 0;
+        }
+    }
+    fclose(fp);
+}
+void Stampa(Libro library[], int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        printf("%s\n", library[i].title);
+        printf("%s\n", library[i].author);
+        printf("%d\n", library[i].year);
+        printf("%f\n", library[i].price);
+    }
+}
+void GestioneCategoria(Libro library[], int size)
+{
+    for (int i = 0; i < CATEGORY_COUNT; i++)
+    {
+        Categoria cat = i;
+        for (int x = 0; x < size; x++)
+        {
+            if (library[x].genere == cat)
+            {
             }
         }
     }
 }
-void GestioneCategoria(libro libray[], int size)
+int main(int argv, char *argc[])
 {
-    for (int i = 0; i < CATEGORY_COUNT; i++)
-    {
-        Categoria cat=i;
-        for (int x = 0; x < size; x++)
-    {
-        if (library[x].categoria ==cat){
-
-        }
-    }
-    }
-    
-    
-}
-int main()
-{
-    Library libreria[]; 
-    int size = sizeof(library) / sizeof(library[0]);
+    Libro libreria[60];
+    int size = sizeof(libreria) / sizeof(libreria[0]);
+    read(argc, libreria);
+    Stampa(libreria, size);
     return 0;
 }
 /*
-struct MioStruct {
-    int campo1;
-    float campo2;
-};
-
 struct MioStruct* array = (struct MioStruct*)malloc(n * sizeof(struct MioStruct));
 */
