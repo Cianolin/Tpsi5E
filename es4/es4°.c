@@ -47,18 +47,12 @@ void read(char *argv[], Libro Library[])
 {
     char c;
     int libroIndex = 0;
-    char stringa[40];
+    char stringa[40]="";
     int count=0;
     FILE *fp = fopen(argv[1], "r");
     if (fp == NULL)
     {
         printf("File non trovato\n");
-        exit(1);
-    }
-    Libro *book = malloc(sizeof(Libro));
-    if (book == NULL)
-    {
-        printf("Memoria non allocata\n");
         exit(1);
     }
     while ((c = fgetc(fp)) != EOF)
@@ -67,37 +61,33 @@ void read(char *argv[], Libro Library[])
         {
             if (c != ',')
             {
-                stringa[strlen(stringa)] = c;
-                strcpy(stringa, "");
+                strcpy(stringa, stringa+c);
             }
             else
             {
                 if (count == 0)
                 {
-                    strcpy(book->title, stringa);
+                    strcpy(Library[libroIndex].title, stringa);
                 }
                 else if (count == 1)
                 {
-                    strcpy(book->author, stringa);
+                    strcpy(Library[libroIndex].author, stringa);
                 }
                 else if (count == 2)
                 {
-                    book->year = atoi(stringa);
+                    Library[libroIndex].year = atoi(stringa);
                 }
                 else if (count == 3)
                 {
-                    book->price = atof(stringa);
+                    Library[libroIndex].price = atof(stringa);
                 }
-                strcpy(stringa, "");
                 count++;
+                stringa[0]= '\0';
             }
         }
         else
         {
-            Libro libro = *book;
-            Library[libroIndex] = libro;
             libroIndex++;
-            free(book);
             count = 0;
         }
     }
