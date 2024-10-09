@@ -57,11 +57,14 @@ void read(char *argv[], Libro Library[])
     }
     while ((c = fgetc(fp)) != EOF)
     {
+        printf("%c", c);
         if (c !='\n')
         {
             if (c != ',')
             {
-                strcpy(stringa, stringa+c);
+                int len= strlen(stringa);
+                stringa[len]=c;
+                stringa[len+1]='\0';
             }
             else
             {
@@ -87,8 +90,14 @@ void read(char *argv[], Libro Library[])
         }
         else
         {
-            libroIndex++;
-            count = 0;
+            if(count==3){
+                Library[libroIndex].price= atof(stringa);
+            }else{
+                libroIndex++;
+                count = 0;
+                stringa[0]='\0';
+            }
+            
         }
     }
     fclose(fp);
@@ -100,7 +109,7 @@ void Stampa(Libro library[], int size)
         printf("%s\n", library[i].title);
         printf("%s\n", library[i].author);
         printf("%d\n", library[i].year);
-        printf("%f\n", library[i].price);
+        printf("%.2f\n", library[i].price);
     }
 }
 void GestioneCategoria(Libro library[], int size)
@@ -118,7 +127,7 @@ void GestioneCategoria(Libro library[], int size)
 }
 int main(int argv, char *argc[])
 {
-    Libro libreria[60];
+    Libro libreria[20];
     int size = sizeof(libreria) / sizeof(libreria[0]);
     read(argc, libreria);
     Stampa(libreria, size);
