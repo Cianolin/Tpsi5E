@@ -15,34 +15,22 @@ Buon lavoro!La consegna dovrà contenere il codice (su git) e una relazione dett
 In allegato, qui, trovate il file da cui pescare i libri per popolare correttamente la libreria.
 */
 #define DIM 512
-typedef enum
-{
-    ADVENTURE,
-    HISTORICAL_FICTION,
-    LITERARY_FICTION,
-    MEMOIR,
-    MODERNIST,
-    MYSTERY,
-    PHILOSOPHICAL,
-    POETRY,
-    ROMANCE,
-    CATEGORY_COUNT
-} Categoria;
 typedef struct
 {
     char title[40];
     char author[40];
     int year;
     float price;
-    Categoria genere;
+    char categoria[40];
 } Libro;
 
 typedef struct
 {
-    Libro book[40];
-    Categoria cat;
-} Library;
-
+    char name[40];
+    Libro book[20];
+    int nLibri;
+} Categoria;
+int nCategorie=0;
 void read(char *argv[], Libro Library[])
 {
     char c;
@@ -83,6 +71,8 @@ void read(char *argv[], Libro Library[])
                 else if (count == 3)
                 {
                     Library[libroIndex].price = atof(stringa);
+                } else if(count == 4){
+                    strcpy(Library[libroIndex].categoria, stringa);
                 }
                 count++;
                 stringa[0]= '\0';
@@ -90,9 +80,9 @@ void read(char *argv[], Libro Library[])
         }
         else
         {
-            if(count==3){
-                Library[libroIndex].price= atof(stringa);
-            }else{
+            if(count == 4){
+                    strcpy(Library[libroIndex].categoria, stringa);
+                }else{
                 libroIndex++;
                 count = 0;
                 stringa[0]='\0';
@@ -102,6 +92,33 @@ void read(char *argv[], Libro Library[])
     }
     fclose(fp);
 }
+int ConforntoCategorie(Categoria categoria, char* stringa){
+    if(strcmp(categoria.name, stringa)==0){
+        return 1;
+    }
+    return 0;
+}
+void CreaCategoria(Categoria categoria[], int *nCategorie, Libro libreria[], int size) {
+    for (int k = 0; k < size; k++) {
+        int esiste = 0;
+        for (int i = 0; i < *nCategorie; i++) {
+            esiste=(categoria[*nCategorie].name, libreria[k].categoria);
+        }
+        if (!esiste) {
+            strcpy(categoria[*nCategorie].name, libreria[k].categoria);
+            (*nCategorie)++;
+        }
+    }
+}
+int RicercaCategoria(Categoria categoria[], char* stringa){
+    for(int i=0; i<nCategorie; i++){
+        int esiste=(categoria[*nCategorie].name, libreria[k].categoria); 
+        if(esiste){
+            return i;
+        }
+    }
+    return -1;
+}
 void Stampa(Libro library[], int size)
 {
     for (int i = 0; i < size; i++)
@@ -110,11 +127,12 @@ void Stampa(Libro library[], int size)
         printf("%s\n", library[i].author);
         printf("%d\n", library[i].year);
         printf("%.2f\n", library[i].price);
+        printf("%s\n", libreria[i].categoria);
     }
 }
 void GestioneCategoria(Libro library[], int size)
 {
-    for (int i = 0; i < CATEGORY_COUNT; i++)
+    for (int i = 0; i < ; i++)
     {
         Categoria cat = i;
         for (int x = 0; x < size; x++)
@@ -133,6 +151,3 @@ int main(int argv, char *argc[])
     Stampa(libreria, size);
     return 0;
 }
-/*
-struct MioStruct* array = (struct MioStruct*)malloc(n * sizeof(struct MioStruct));
-*/
