@@ -38,8 +38,10 @@ void read(char *argv[], Libro *libri)
     }
     while ((c = fgetc(fp)) != EOF)
     {
+        printf("%c",c);
         if (c != '\n')
         {
+            
             if (c != ',')
             {
                 int len = strlen(stringa);
@@ -74,19 +76,12 @@ void read(char *argv[], Libro *libri)
         }
         else
         {
-            if (count == 4)
-            {
-                strcpy(libri[libroIndex].genere, stringa);
-            }
-            else
-            {
-                libroIndex++;
-                count = 0;
-                stringa[0] = '\0';
-            }
+            stringa[0] = '\0';
+            count = 0;
+            libroIndex++;
         }
+        fclose(fp);
     }
-    fclose(fp);
 }
 void CreaCategoria(char generi[][80], Libro book, int *size)
 {
@@ -98,7 +93,8 @@ void CreaCategoria(char generi[][80], Libro book, int *size)
             found = 1;
         }
     }
-    if(!found){
+    if (!found)
+    {
         strcpy(generi[*size], book.genere);
         (*size)++;
     }
@@ -110,7 +106,7 @@ void Stampa(Libro book)
     printf("%d\n", book.year);
     printf("%.2f\n", book.price);
 }
-int TrovaCategoria(Libro *library,char *categoria, int size)
+void TrovaCategoria(Libro *library, char *categoria, int size)
 {
     for (int i = 0; i < size; i++)
     {
@@ -119,7 +115,6 @@ int TrovaCategoria(Libro *library,char *categoria, int size)
             Stampa(library[i]);
         }
     }
-    return -1;
 }
 int TrovaLibro(Libro *library, int size, char *name)
 {
@@ -132,12 +127,12 @@ int TrovaLibro(Libro *library, int size, char *name)
     }
     return -1;
 }
-void MenuCategorie(char generi[][80], int size){
+void MenuCategorie(char generi[][80], int size)
+{
     for (int i = 0; i < size; i++)
     {
         printf("%s\n", generi[i]);
     }
-    
 }
 void Menu()
 {
@@ -147,21 +142,24 @@ void Menu()
 }
 int main(int argv, char *argc[])
 {
-    int nCategorie =0;
+    int nCategorie = 0;
     Libro libreria[20];
     Libro book;
-    char categorie[nCategorie][80];
+    char categorie[20][80];
+    char genere[20];
+    char name[20];
+    int choose;
+    int pos;
     int size = sizeof(libreria) / sizeof(libreria[0]);
     read(argc, libreria);
     for (int i = 0; i < size; i++)
     {
         CreaCategoria(categorie, libreria[i], &nCategorie);
     }
-    int choose;
     while (1)
     {
         Menu();
-        scanf("%d\n", &choose);
+        scanf("%d", &choose);
         switch (choose)
         {
         case 1:
@@ -171,10 +169,10 @@ int main(int argv, char *argc[])
             }
             break;
         case 2:
-            char name[20];
-            scanf("%s\n", name);
+            scanf("%s", name);
+            printf("Metti il titolo del libro da cercare\n");
             int index = TrovaLibro(libreria, size, name);
-            if (index < 0)
+            if (index == -1)
             {
                 printf("Libro non trovato");
             }
@@ -183,18 +181,16 @@ int main(int argv, char *argc[])
                 Stampa(libreria[index]);
             }
         case 3:
-            char genere[20];
-            int pos;
             MenuCategorie(categorie, nCategorie);
+            printf("Scegli una categoria");
             scanf("%d", &pos);
             strcpy(genere, categorie[pos]);
-            TrovaCategoria(libreria, genere,size);
+            TrovaCategoria(libreria, genere, size);
             break;
 
         default:
             break;
         }
     }
-
     return 0;
 }
