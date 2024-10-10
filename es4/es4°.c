@@ -21,17 +21,10 @@ typedef struct
     char author[40];
     int year;
     float price;
-    char categoria[40];
+    char genere[40];
 } Libro;
 
-typedef struct
-{
-    char name[40];
-    Libro book[20];
-    int nLibri;
-} Categoria;
-int nCategorie = 0;
-void read(char *argv[], Libro Library[])
+void read(char *argv[], Libro *libri)
 {
     char c;
     int libroIndex = 0;
@@ -57,23 +50,23 @@ void read(char *argv[], Libro Library[])
             {
                 if (count == 0)
                 {
-                    strcpy(Library[libroIndex].title, stringa);
+                    strcpy(libri[libroIndex].title, stringa);
                 }
                 else if (count == 1)
                 {
-                    strcpy(Library[libroIndex].author, stringa);
+                    strcpy(libri[libroIndex].author, stringa);
                 }
                 else if (count == 2)
                 {
-                    Library[libroIndex].year = atoi(stringa);
+                    libri[libroIndex].year = atoi(stringa);
                 }
                 else if (count == 3)
                 {
-                    Library[libroIndex].price = atof(stringa);
+                    libri[libroIndex].price = atof(stringa);
                 }
                 else if (count == 4)
                 {
-                    strcpy(Library[libroIndex].categoria, stringa);
+                    strcpy(libri[libroIndex].genere, stringa);
                 }
                 count++;
                 stringa[0] = '\0';
@@ -83,7 +76,7 @@ void read(char *argv[], Libro Library[])
         {
             if (count == 4)
             {
-                strcpy(Library[libroIndex].categoria, stringa);
+                strcpy(libri[libroIndex].genere, stringa);
             }
             else
             {
@@ -95,130 +88,97 @@ void read(char *argv[], Libro Library[])
     }
     fclose(fp);
 }
-int ConforntoCategorie(Categoria categoria, char *stringa)
+void CreaCategoria(char **generi, Libro book, int size)
 {
-    if (strcmp(categoria.name, stringa) == 0)
+    int found = 0;
+    for (int i = 0; i < size; i++)
     {
-        return 1;
-    }
-    return 0;
-}
-void CreaCategoria(Categoria categoria[], int *nCategorie, Libro libreria[], int size)
-{
-    for (int k = 0; k < size; k++)
-    {
-        int esiste = 0;
-        for (int i = 0; i < *nCategorie; i++)
+        if (strcmp(book, generi[i]))
         {
-            esiste = strcmp(categoria[*nCategorie].name, libreria[k].categoria);
-        }
-        if (!esiste)
-        {
-            strcpy(categoria[*nCategorie].name, libreria[k].categoria);
-            (*nCategorie)++;
+            found = 1;
         }
     }
+    if(!found){
+        strcpy(generi[size], book.genere);
+    }
 }
-int RicercaLibro(Libro libreria[], int size, char *nome)
+void Stampa(Libro book)
+{
+    printf("%s\n", book.title);
+    printf("%s\n", book.author);
+    printf("%d\n", book.year);
+    printf("%.2f\n", book.price);
+}
+int TrovaCategoria(Libro *library, int size, char *name)
 {
     for (int i = 0; i < size; i++)
     {
-        if (strcmp(nome, libreria[i].title) == 0)
+        if (!strcmp(library[i].genere, name))
+        {
+            Stampa(library[i]);
+        }
+    }
+    return -1;
+}
+int TrovaLibro(Libro *library, int size, char *name)
+{
+    for (int i = 0; i < size; i++)
+    {
+        if (!strcmp(library[i].title, name))
         {
             return i;
         }
     }
     return -1;
-}
-int RicercaCategoria(Categoria categoria[], char *stringa)
-{
-    for (int i = 0; i < nCategorie; i++)
-    {
-        int esiste = strcmp(categoria[(nCategorie)].name, stringa);
-        if (esiste)
-        {
-            return i;
-        }
-    }
-    return -1;
-}
-void StampaSingolo(Libro libro)
-{
-    printf("%s\n", libro.title);
-    printf("%s\n", libro.author);
-    printf("%d\n", libro.year);
-    printf("%.2f\n",libro.price);
-    printf("%s\n", libro.categoria);
-}
-void Stampa(Libro library[], int size)
-{
-    for (int i = 0; i < size; i++)
-    {
-        printf("%s\n", library[i].title);
-        printf("%s\n", library[i].author);
-        printf("%d\n", library[i].year);
-        printf("%.2f\n", library[i].price);
-        printf("%s\n", library[i].categoria);
-    }
-}
-void StampaCategoria(Categoria generi[]){
-for (int i = 0; i < nCategorie; i++)
-{
-        printf("%s\n", generi[i].name);
-}
 }
 void Menu()
 {
-    printf("1. Ricerca categoria");
-    printf("2. Stampa la libreria");
-    printf("3. Ricerca libro");
+    printf("1. Stampa libreria\n");
+    printf("2. Trova libro\n");
+    printf("3. Trova libri della categoria\n");
 }
 int main(int argv, char *argc[])
 {
     Libro libreria[20];
-    Categoria categorie[10];
+    Libro book;
+    char generi[10][80];
     int size = sizeof(libreria) / sizeof(libreria[0]);
     read(argc, libreria);
     int choose;
-    int exit = 0;
-    while (!exit)
+    while (1)
     {
         Menu();
-        scanf("%d\n",&choose);
+        scanf("%d\n", &choose);
         switch (choose)
         {
         case 1:
-            char categoria[10];
-            scanf("%s", categoria);
-            if (RicercaCategoria(categorie, categoria) == 1)
+            for (int i = 0; i < size; i++)
             {
-                printf("Esiste la categoria\n");
+                Stampa(libreria[i]);
             }
             break;
         case 2:
-
-            Stampa(libreria, size);
-
-            break;
-        case 3:
-            char titolo[20];
-            scanf("%s\n", titolo);
-            int posizone;
-            if ((posizone= RicercaLibro(libreria, size, titolo)) == -1)
+            char name[20];
+            scanf("%s\n", name);
+            int index = TrovaLibro(libreria, size, name);
+            if (index < 0)
             {
-                printf("Libro non esiste\n");
-                printf("non");
+                printf("Libro non trovato");
             }
             else
             {
-                printf("Libro esiste\n");
-                //StampaSingolo(libreria[posizone]);
+                Stampa(libreria[index]);
             }
-        case 6:
-            exit = 1;
+        case 3:
+            char genere[20];
+            scanf("%s", genere);
+            TrovaCategoria(libreria, size, genere);
+            break;
+
         default:
             break;
         }
     }
+
     return 0;
 }
