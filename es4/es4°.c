@@ -161,10 +161,17 @@ void Stampa(Libro library[], int size)
         printf("%s\n", library[i].categoria);
     }
 }
+void StampaCategoria(Categoria generi[]){
+for (int i = 0; i < nCategorie; i++)
+{
+        printf("%s\n", generi[i].name);
+}
+}
 void Menu()
 {
     printf("1. Ricerca categoria");
     printf("2. Stampa la libreria");
+    printf("3. Ricerca libro");
 }
 int main(int argv, char *argc[])
 {
@@ -177,7 +184,7 @@ int main(int argv, char *argc[])
     while (!exit)
     {
         Menu();
-        scanf("%d\n", &choose);
+        scanf("%d\n",&choose);
         switch (choose)
         {
         case 1:
@@ -188,9 +195,11 @@ int main(int argv, char *argc[])
                 printf("Esiste la categoria\n");
             }
             break;
-        /*case 2:<
+        case 2:
+
             Stampa(libreria, size);
-            break;*/
+
+            break;
         case 3:
             char titolo[20];
             scanf("%s\n", titolo);
@@ -211,6 +220,5 @@ int main(int argv, char *argc[])
             break;
         }
     }
-    Stampa(libreria, size);
     return 0;
 }
