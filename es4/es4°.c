@@ -88,18 +88,19 @@ void read(char *argv[], Libro *libri)
     }
     fclose(fp);
 }
-void CreaCategoria(char **generi, Libro book, int size)
+void CreaCategoria(char generi[][80], Libro book, int *size)
 {
     int found = 0;
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < *size; i++)
     {
-        if (strcmp(book, generi[i]))
+        if (strcmp(book.genere, generi[i]))
         {
             found = 1;
         }
     }
     if(!found){
-        strcpy(generi[size], book.genere);
+        strcpy(generi[*size], book.genere);
+        (*size)++;
     }
 }
 void Stampa(Libro book)
@@ -109,11 +110,11 @@ void Stampa(Libro book)
     printf("%d\n", book.year);
     printf("%.2f\n", book.price);
 }
-int TrovaCategoria(Libro *library, int size, char *name)
+int TrovaCategoria(Libro *library,char *categoria, int size)
 {
     for (int i = 0; i < size; i++)
     {
-        if (!strcmp(library[i].genere, name))
+        if (!strcmp(library[i].genere, categoria))
         {
             Stampa(library[i]);
         }
@@ -131,6 +132,13 @@ int TrovaLibro(Libro *library, int size, char *name)
     }
     return -1;
 }
+void MenuCategorie(char generi[][80], int size){
+    for (int i = 0; i < size; i++)
+    {
+        printf("%s\n", generi[i]);
+    }
+    
+}
 void Menu()
 {
     printf("1. Stampa libreria\n");
@@ -139,11 +147,16 @@ void Menu()
 }
 int main(int argv, char *argc[])
 {
+    int nCategorie =0;
     Libro libreria[20];
     Libro book;
-    char generi[10][80];
+    char categorie[nCategorie][80];
     int size = sizeof(libreria) / sizeof(libreria[0]);
     read(argc, libreria);
+    for (int i = 0; i < size; i++)
+    {
+        CreaCategoria(categorie, libreria[i], &nCategorie);
+    }
     int choose;
     while (1)
     {
@@ -171,8 +184,11 @@ int main(int argv, char *argc[])
             }
         case 3:
             char genere[20];
-            scanf("%s", genere);
-            TrovaCategoria(libreria, size, genere);
+            int pos;
+            MenuCategorie(categorie, nCategorie);
+            scanf("%d", &pos);
+            strcpy(genere, categorie[pos]);
+            TrovaCategoria(libreria, genere,size);
             break;
 
         default:
