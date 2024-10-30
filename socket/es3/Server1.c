@@ -11,57 +11,43 @@
 
 #define DIM 50
 #define SERVERPORT 1313
-void 
+
 int Palindroma(char *str)
 {
-    int length = strlen(str);
-    int left = 0, rigth = length-1;
-    while (left<rigth)
+    for (int i = 0; i < strlen(str); i++)
     {
-        if(str[left]!= str[rigth]){
-            return 0;//palindromo
+        if(str[i]!=str[strlen(str)-1-i])
+        {
+            return 0;
         }
-        rigth--;
-        left++;
     }
+    
     return 1;//palindromo
 }
 
 int main()
 {
-    struct sockaddr_in servizio, addr_remoto; // record con i dati del server e del client
-    // definizione dei dati del socket p.161
+    struct sockaddr_in servizio, addr_remoto; 
     servizio.sin_family = AF_INET;
     servizio.sin_addr.s_addr = htonl(INADDR_ANY);
     servizio.sin_port = htons(SERVERPORT);
     int socketfd, soa, fromlen = sizeof(servizio);
     char str[DIM], str1[DIM];
-    // impostazione del transport endpoint del server p.163-164
+    int palintromo;
     socketfd = socket(AF_INET, SOCK_STREAM, 0);
-    // leghiamo l'indirizzo al transport endpoint p. 164
-    bind(socketfd, (struct sockaddr *)&servizio, sizeof(servizio));
-    // poniamo il server in ascolto delle richieste dei client
-    listen(socketfd, 10); // pu� attendere fino a 10 client
-    // ciclo infinito
+    if(bind(socketfd, (struct sockaddr *)&servizio, sizeof(servizio)) <0){
+        exit(-1);
+    }
+    listen(socketfd, 10);
     for (;;)
     {
         printf("\n\nServer in ascolto...");
         fflush(stdout);
-        // il server accetta la connessione pag. 165
         soa = accept(socketfd, (struct sockaddr *)&addr_remoto, &fromlen);
-        // legge dal client
         read(soa, str, sizeof(str));
         printf("Stringa ricevuta: %s\n", str);
-        if (Palindroma(str)==1)
-        {
-            strcpy("è palintroma", str1);
-            write(soa, str1, sizeof(str1));
-        }
-        else
-        {
-            strcpy("non è palintroma", str1);
-            write(soa, str1, sizeof(str1));
-        }
+        palintromo= Palindroma(str);
+        write(soa, &palintromo, sizeof(int));
         close(soa);
     }
     return 0;

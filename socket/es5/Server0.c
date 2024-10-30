@@ -2,15 +2,31 @@
 #include <stdio.h>     
 #include <stdlib.h>      
 #include <sys/socket.h> 
-#include <sys/types.h>   
-#include <netinet/in.h>  
+#include <sys/types.h>
+#include <netinet/in.h>
 #include <string.h>      
 #include <errno.h>      
-#include <ctype.h>       
+#include <ctype.h>      
+#include <unistd.h>       
 
 #define DIM 50
 #define SERVERPORT 1313
-
+void Ordina(char *str){
+    int i,j,temp;
+    for (  i = 0; i < strlen(str); i++)
+    {
+        for (j = 0; j < strlen(str)-i-1; j++)
+        {
+            if(str[j]> str[j+1]){
+                temp= str[j];
+                str[j]=str[j+1];
+                str[j+1]=temp;
+            }
+        }
+        
+    }
+    
+}
 int main()
 {
     struct sockaddr_in servizio, addr_remoto;
@@ -30,6 +46,9 @@ int main()
         soa=accept(socketfd,(struct sockaddr*)&addr_remoto,&fromlen);
         read(soa,str,sizeof(str));
         printf("Stringa ricevuta: %s\n",str);
+        Ordina(str);
+        printf("Stringa ordinata: %s", str);
+        write(soa, str, sizeof(str));
         close(soa);
     }
    return 0;   
