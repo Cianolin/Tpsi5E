@@ -28,7 +28,7 @@ int main(int argc,char** argv)
     scanf("%s",str1);
     
     printf("Inserisci il carattere da trovare\n");
-    scanf(" %c", & c);
+    scanf(" %c", & c);//si deve mettere uno spazio prima del %, se no il codice lo dalda"bug di c"
     write(socketfd,str1,sizeof(str1));
     write(socketfd, &c, sizeof(char));
     
