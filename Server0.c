@@ -7,7 +7,10 @@
 #include <string.h>      
 #include <errno.h>      
 #include <ctype.h>       
-
+/*Esercizio 6
+Scrivere il codice in C, di un applicazione Socket CLIENT-SERVER in cui il server riceve in input un
+vettore di numeri interi, dopo aver effettuato gli eventuali ed opportuni controlli (se necessari), rispedisce al
+Client la somma e la media del vettore stesso.*/
 #define DIM 50
 #define SERVERPORT 1313
 
