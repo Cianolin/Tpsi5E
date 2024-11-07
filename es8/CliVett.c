@@ -10,32 +10,36 @@
 
 #define DIM 512
 #define SERVERPORT 1313
-
+int max(int *vett)
+{
+    int max = vett[0];
+    for (int i = 1; i < 5; i++)
+    {
+        if (max > vett[i])
+            max = vett[i];
+    }
+}
+int min(int *vett)
+{
+    int min = vett[0];
+    for (int i = 1; i < 5; i++)
+    {
+        if (min > vett[i])
+            min = vett[i];
+    }
+}
 int main(int argc, char **argv)
 {
 
     struct sockaddr_in servizio;
-    int socketfd, vett[DIM]; 
-    int sum, media;
-    char str1[DIM], str2[DIM];            
-    // settaggio del socket locale
+    int socketfd, vett[DIM];
+    char str1[DIM], str2[DIM];
     servizio.sin_family = AF_INET;
     servizio.sin_addr.s_addr = htonl(INADDR_ANY);
     servizio.sin_port = htons(SERVERPORT);
     socketfd = socket(AF_INET, SOCK_STREAM, 0);
     connect(socketfd, (struct sockaddr *)&servizio, sizeof(servizio));
-    // scrivo sulla socket
-    for (int i = 0; i < 4; i++)
-    {
-        printf("Vettore %d\n", i);
-        scanf("%d", &vett[i]);
-        printf("%d", vett[i]);
-    }
     write(socketfd, vett, sizeof(vett));
-    read(socketfd,&sum,sizeof(int));
-    read(socketfd, &media, sizeof(int));
-    printf("La media dei vettori è %d\nLa somma è %d", sum, media);
-    // chiudo il client
     close(socketfd);
     return 0;
 }
