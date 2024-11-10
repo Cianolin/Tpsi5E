@@ -1,77 +1,70 @@
+// server.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/socket.h>
-#include <sys/types.h>
 #include <netinet/in.h>
-#include <netdb.h>
 #include <string.h>
-#include <fcntl.h>
-#include <signal.h>
-#include <errno.h>
 #include <ctype.h>
 #include <unistd.h>
+#include <limits.h>
 
-#define DIM 512
-#define dim 5
+#define DIM 4
 #define SERVERPORT 1313
 
-int Massimo(int vett[])
+int calcola_max(int vettore[])
 {
-  int max= vett[0];
-  for (int i = 0; i < 5; i++)
-  {
-    if (max < vett[i])
+    int max = vettore[0];
+    for (int i = 0; i < DIM; i++)
     {
-      max = vett[i];
+        if (vettore[i] > max)
+            max = vettore[i];
     }
-  }
-  printf("%d", max);
-  return max;
+    return max;
 }
-int Minimo(int vett[])
+
+int calcola_min(int vettore[])
 {
-  int min = vett[0];
-  for (int i = 0; i < 5; i++)
-  {
-    if (min > vett[i])
+    int min = vettore[0];
+    for (int i = 0; i < DIM; i++)
     {
-      min = vett[i];
+        if (vettore[i] < min)
+            min = vettore[i];
     }
-  }
-  printf("%d", min);
-  return min;
+    return min;
 }
-int main()
+
+int main(int argc, char *argv[])
 {
-  struct sockaddr_in servizio, addr_remoto;
-  int socketfd, soa, fromlen = sizeof(servizio), vett[dim], min, max;
-  char str[DIM];
-  //,newstr[DIM]="ricevuta";
-  servizio.sin_family = AF_INET;
-  servizio.sin_addr.s_addr = htonl(INADDR_ANY);
-  servizio.sin_port = htons(SERVERPORT);
-  socketfd = socket(AF_INET, SOCK_STREAM, 0);
-  if (socketfd < 0)
-  {
-    perror("Errore nella socket");
-  }
-  if (bind(socketfd, (struct sockaddr *)&servizio, sizeof(servizio)) < 0)
-  {
-    perror("errore nella bind");
-  }
-  listen(socketfd, 10) ;
-  printf("\n\nServer in ascolto...");
-  fflush(stdout);
-  soa = accept(socketfd, (struct sockaddr *)&addr_remoto, &fromlen);
-  printf("ciao");
-  read(soa, vett, sizeof(vett));
-  // printf("Vettore ricevuto");
-  max = Massimo(vett);
-  min = Minimo(vett);
-  printf("Ciao");
-  write(socketfd, &min, sizeof(min));
-  write(socketfd, &max, sizeof(max));
-  close(soa);
-  close(socketfd);
-  return 0;
+    struct sockaddr_in servizio, addr_remoto;
+    int socketfd, soa, fromlen = sizeof(addr_remoto);
+    int vettore[DIM];
+    int min, max;
+
+    servizio.sin_addr.s_addr = htonl(INADDR_ANY);
+    servizio.sin_port = htons(SERVERPORT);
+    servizio.sin_family = AF_INET;
+
+    socketfd = socket(AF_INET, SOCK_STREAM, 0);
+    bind(socketfd, (struct sockaddr *)&servizio, sizeof(servizio));
+    listen(socketfd, 10);
+
+    for (;;)
+    {
+        printf("Server in ascolto...\n");
+        fflush(stdout);
+
+        soa = accept(socketfd, (struct sockaddr *)&addr_remoto, &fromlen);
+
+        read(soa, vettore, sizeof(vettore));
+
+        min = calcola_min(vettore);
+        max = calcola_max(vettore);
+
+        write(soa, &min, sizeof(min));
+        write(soa, &max, sizeof(max));
+
+        close(soa);
+    }
+    close(socketfd);
+    return 0;
 }
