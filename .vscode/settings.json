@@ -3,6 +3,7 @@
     "files.associations": {
         "stdlib.h": "c",
         "socket.h": "c",
-        "ctype.h": "c"
+        "ctype.h": "c",
+        "errno.h": "c"
     }
 }

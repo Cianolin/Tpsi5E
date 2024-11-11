@@ -8,6 +8,7 @@
 #include <ctype.h>      
 #include <unistd.h>    
 #define DIM 5
+#define SERVERPORT 1313
 
 int main()
 {
@@ -16,9 +17,14 @@ int main()
     servizio.sin_addr.s_addr=htonl(INADDR_ANY);
     servizio.sin_port=htons(SERVERPORT);
     int socketfd, soa, fromlen=sizeof(servizio);
-    int vett[], pari=0, dispari=0;
-    socketfd=socket(AF_INET,SOCK_STREAM,0);
-    bind(socketfd,(struct sockaddr*)&servizio,sizeof(servizio));
+    int vett[DIM], pari=0, dispari=0;
+    if(socketfd<0){
+        perror("errore nella creazione della socket");
+    }
+    
+    if(bind(socketfd,(struct sockaddr*)&servizio,sizeof(servizio))<0){
+        perror("errore nella bind");
+    }
     listen(socketfd,10);
     
     for (; ;)
@@ -28,7 +34,7 @@ int main()
         soa=accept(socketfd,(struct sockaddr*)&addr_remoto,&fromlen);
         read(soa,vett,sizeof(DIM));
         printf("Vettore ricevuto");
-        for(int i=0;i<0;i++){
+        for(int i=0;i<DIM;i++){
             if(vett[i]%2!=0){
                 dispari++;
             }
@@ -36,8 +42,8 @@ int main()
                 pari++;
             }
         }
-        write(soa, pari, sizeof(int));
-        write(soa, dispari, sizeof(int));
+        write(soa, &pari, sizeof(int));
+        write(soa, &dispari, sizeof(int));
         close(soa);
     }
    return 0;   

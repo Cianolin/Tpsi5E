@@ -6,7 +6,7 @@
 #include <netinet/in.h>
 #include <unistd.h>
 
-#define DIM 120
+#define DIM 512
 #define SERVERPORT 1313
 
 void confronta_lunghezza(const char *str1, const char *str2, char *messaggio)
@@ -40,17 +40,12 @@ int main()
     char messaggio[DIM];
 
     socketfd = socket(AF_INET, SOCK_STREAM, 0);
-    if (socketfd < 0)
-    {
-        perror("Errore nella creazione del socket");
-        exit(EXIT_FAILURE);
+    if(socketfd<0){
+        perror("errore nella creazione della socket");
     }
-
-    if (bind(socketfd, (struct sockaddr *)&servizio, sizeof(servizio)) < 0)
-    {
-        perror("Errore nel binding");
-        close(socketfd);
-        exit(EXIT_FAILURE);
+    
+    if(bind(socketfd,(struct sockaddr*)&servizio,sizeof(servizio))<0){
+        perror("errore nella bind");
     }
 
     listen(socketfd, 10);

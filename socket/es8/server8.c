@@ -43,9 +43,15 @@ int main(int argc, char *argv[])
     servizio.sin_addr.s_addr = htonl(INADDR_ANY);
     servizio.sin_port = htons(SERVERPORT);
     servizio.sin_family = AF_INET;
+    if (socketfd < 0)
+    {
+        perror("errore nella creazione della socket");
+    }
 
-    socketfd = socket(AF_INET, SOCK_STREAM, 0);
-    bind(socketfd, (struct sockaddr *)&servizio, sizeof(servizio));
+    if (bind(socketfd, (struct sockaddr *)&servizio, sizeof(servizio)) < 0)
+    {
+        perror("errore nella bind");
+    }
     listen(socketfd, 10);
 
     for (;;)
