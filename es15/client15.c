@@ -17,17 +17,21 @@ int main(){
     servizio.sin_family= AF_INET;
     servizio.sin_addr.s_addr=htonl(INADDR_ANY);
     servizio.sin_port=htons(SERVERPORT);
-    char str1[DIM], str2[DIM];
+    char str1[DIM], str2[DIM], str3[DIM];
     int socketfd;
     socketfd= socket(AF_INET, SOCK_STREAM, 0);
     connect(socketfd, (struct sockaddr*)&servizio, sizeof(servizio));
     printf("Prima stringa\n");
     scanf("%s", str1);
     printf("Seconda stringa\n");
-    scnaf("%s", str2);
+    scanf("%s", str2);
     write(socketfd, str1,sizeof(str1));
     write(socketfd, str2, sizeof(str2));
-    printf("%s\n", str2);
+    read(socketfd, str3, sizeof(str3));
+    printf("Le lettere comuni sono:");
+    for(int i=0;i<strlen(str3); i++){
+        printf("%c", str3[i]);
+    }
     close(socketfd);
     return 0;
 }

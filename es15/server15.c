@@ -17,16 +17,15 @@ void Confronta(char *str1, char*str2, char *str3){
         for (int y = 0; y < strlen(str2); y++)
         {
             if(str1[i]==str2[y]){
-                for (int x = 0; x < strlen(str3); x++)
-                {
-                    if(str3[x]=!str1[i]){
-                        str3[posix]= str1;
+                    if(str1[i]==str2[y]){
+                        str3[posix]=str1[i];
+                        posix++;
                     }
-                }
             }
         }
-        
+    str3[posix]='\0';    
     }
+
     
 }
 int main(){
@@ -43,12 +42,13 @@ int main(){
     }
     listen(socketfd, 10);
     for(; ;){
-        printf("\nServer in ascolto");
+        printf("\nServer in ascolto\n");
         fflush(stdout);
         soa=accept(socketfd,(struct sockaddr*)&addr_remote,&fromlen);
         read(soa,str1,sizeof(str1));
         read(soa,str2,sizeof(str2));
         printf("stringa ricevuta");
+        Confronta(str1,str2,str3);
         write(soa,str3, sizeof(str3));
         close(soa);
     }
