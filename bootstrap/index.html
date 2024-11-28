@@ -1,43 +1,138 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  </head>
-  <body>
 
-    <ul class="nav justify-content-center">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Informatica</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Sistemi e reti</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Socket</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Glossario</a>
-        </li>
-      </ul>
-      <div class="container-fluid">
-        <h1>SOCKET</h1>
-        <div>
-          <h2>Cos'è una socket?</h2>
-        </div>
-        <div>
-          <h2>Tipologie di socket</h2>
-        </div>
-        <div>
-          <h2>Processo di comunicazione</h2>
-        </div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center">
+        <h1>Luciano Lin</h1>
       </div>
-      
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  </body>
+    </div>
+  </div>
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="#">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Informatica</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Sistemi e reti</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Socket</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Glossario</a>
+    </li>
+  </ul>
+
+  <div class="row">
+    <div class="col-3">
+      <nav id="navbar-example3" class="navbar navbar-light bg-light flex-column align-items-stretch p-3">
+        <a class="navbar-brand" href="#">SOCKET</a>
+        <nav class="nav nav-pills flex-column">
+          <a class="nav-link" href="#item-1">Cos'è una socket?</a>
+          <nav class="nav nav-pills flex-column">
+          </nav>
+          <a class="nav-link" href="#item-2">Tipologie di socket</a>
+          <a class="nav-link ms-3 my-1" href="#item-2-1">Item 2-1</a>
+          <a class="nav-link ms-3 my-1" href="#item-2-2">Item 2-2</a>
+          <a class="nav-link" href="#item-3">Processo di comunicaione</a>
+          <nav class="nav nav-pills flex-column">
+          </nav>
+        </nav>
+      </nav>
+    </div>
+    <div class="col-9">
+      <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0">
+        <h4 id="item-1">Cos'è una socket?</h4>
+        <p>Una socket è un'astrazione software utilizzata per gestire la comunicazione tra processi all'interno di un
+          sistema operativo o tra dispositivi diversi in una rete. Funziona come un punto di connessione che permette a
+          due
+          applicazioni di inviare e ricevere dati attraverso una rete.
+
+          In informatica, le socket sono essenziali per implementare protocolli di comunicazione come HTTP, FTP, e molti
+          altri. Si possono immaginare come estremità di un tubo attraverso il quale fluiscono i dati tra due punti,
+          facilitando così la comunicazione bidirezionale.
+
+          Ad esempio, quando navighi su un sito web, il tuo browser utilizza una socket per inviare una richiesta al
+          server
+          del sito, e il server risponde tramite un'altra socket.</p>
+        <h4 id="item-2">Tipologie di socket</h4>
+        <p>Le socket sono di 3 tipi e ciascuno diversa tra loro nella modalità di connessione.</p>
+        <h5 id="item-2-1">Strem socket</h5>
+        <p>I stream socket (detti anche socket TCP) sono utilizzati per le connessioni affidabili, orientate alla connessione e basate sul protocollo TCP (Transmission Control Protocol). Offrono un canale di comunicazione bidirezionale continuo tra due processi, garantendo che i dati vengano consegnati in ordine e senza duplicati. Sono ideali per applicazioni come il web browsing, l'email e il trasferimento di file, dove l'integrità dei dati e l'ordine sono cruciali.
+
+          Caratteristiche principali:
+          
+              Connessione affidabile
+          
+              Ordine dei pacchetti garantito
+          
+              Trasmissione continua e bidirezionale
+
+              Utilizza il protocollo TCP          
+          </p>
+        <h5 id="item-2-2">Datagram socket</h5>
+        <p>I datagram socket (detti anche socket UDP) utilizzano il protocollo UDP (User Datagram Protocol) per la comunicazione. A differenza dei stream socket, i datagram socket non richiedono una connessione stabilita e non garantiscono l'ordine o la consegna dei dati. Sono adatti per applicazioni che richiedono una trasmissione rapida e non critica dell'integrità dei dati, come lo streaming audio/video, il gaming online e le comunicazioni VoIP.
+
+          Caratteristiche principali:
+          
+              Nessuna connessione stabilita (senza connessione)
+          
+              Trasmissione rapida
+          
+              Non garantisce l'ordine né la consegna dei pacchetti
+          
+              Utilizza il protocollo UDP</p>
+        <h5 id="item-2-3">Raw socket</h5>
+        <p>I raw socket forniscono un accesso diretto ai protocolli sottostanti come IP o ICMP, consentendo agli sviluppatori di manipolare i pacchetti di rete a un livello più basso rispetto ai socket TCP o UDP. Sono utilizzati per attività avanzate come il monitoraggio del traffico di rete, il pinging, e l'implementazione di protocolli personalizzati. A causa del loro accesso a livello basso, richiedono privilegi amministrativi per essere utilizzati.
+
+          Caratteristiche principali:
+          
+              Accesso diretto ai protocolli di rete sottostanti
+          
+              Utilizzati per il monitoraggio e la manipolazione dei pacchetti di rete
+          
+              Richiedono privilegi amministrativi</p>
+        <h4 id="item-3">Processo di comunicaione</h4>
+        <p>Certamente! Ecco il processo di comunicazione delle socket spiegato senza utilizzare il codice:
+          1. Creazione della Socket
+          
+          Entrambi i lati della comunicazione, cioè il client e il server, iniziano creando una socket, che è come un punto di accesso per inviare e ricevere dati attraverso la rete.
+          2. Binding (Solo per il Server)
+          
+          Il server associa questa socket a un indirizzo IP e una porta specifici. È come dare un indirizzo alla socket, in modo che il client sappia dove connettersi.
+          3. Ascolto (Solo per il Server)
+          
+          Il server mette la socket in modalità di ascolto, aspettando che i client si connettano. È come aprire la porta e aspettare che qualcuno arrivi.
+          4. Connessione (Client)
+          
+          Il client cerca di connettersi al server utilizzando l'indirizzo IP e la porta specificati. Questo è come chiamare un numero di telefono.
+          5. Accettazione della Connessione (Server)
+          
+          Quando il server riceve una richiesta di connessione dal client, accetta la connessione. È come rispondere alla chiamata.
+          6. Comunicazione
+          
+          Una volta stabilita la connessione, sia il client che il server possono scambiare dati. Possono inviare e ricevere messaggi l'uno dall'altro, come due persone che parlano al telefono.
+          7. Chiusura della Connessione
+          
+          Dopo che hanno finito di comunicare, entrambi chiudono le loro socket. È come riagganciare il telefono alla fine di una chiamata.</p>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
