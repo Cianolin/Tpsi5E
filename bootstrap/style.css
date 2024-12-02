@@ -1,0 +1,6 @@
+.scrollable {
+    height: 450px;
+    overflow: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
