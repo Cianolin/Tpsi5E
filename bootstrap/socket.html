@@ -11,18 +11,15 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">ssssssss</a>
+      <a class="navbar-brand" href="index.html">HOME</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
           <li class="nav-item">
             <a class="nav-link active" href="informatica.html">Informatica</a>
           </li>
@@ -32,11 +29,17 @@
           <li class="nav-item">
             <a class="nav-link active" href="socket.html">Socket</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="glossario.html">Glossario</a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
   <div class="row">
+    <div class="text-center">
+      <h1 class="display-3 mb-3 text-primary ombra"><strong>Socket</strong></h1>
+  </div>
     <div class="col-md-2">
       <nav id="navbar-example3" class="h-100 flex-column align-items-stretch pe-4 border-end">
         <nav class="nav nav-pills flex-column">
@@ -56,7 +59,7 @@
       <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true"
         class="scrollspy-example-2 " tabindex="0">
         <div id="item-1">
-          <h4>Cos'e una socket 1</h4>
+          <h5>Cos'e una socket</h5>
           <p>Una socket è un mezzo di comunicazione che permette a due dispositivi di scambiarsi informazioni su una
             rete, come una connessione telefonica tra due interlocutori. Immagina la socket come un canale attraverso il
             quale i dati possono fluire avanti e indietro. Un dispositivo invia dati attraverso questo canale, e l'altro
@@ -122,47 +125,92 @@
     </div>
   </div>
   </div>
-  <div>
-    <pre>
-      <h2>CLIENT</h2>
-      <code>
-          #include &lt;stdio.h&gt;
-          #include &lt;stdlib.h&gt;
-          #include &lt;sys/socket.h&gt;
-          #include &lt;sys/types.h&gt;
-          #include &lt;netinet/in.h&gt;
-          #include &lt;string.h&gt;
-          #include &lt;unistd.h&gt;
-          #define DIM 50
-          #define SERVERPORT 1313
-          int main(int argc, char **argv) 
-          {
-              struct sockaddr_in servizio;
-              servizio.sin_family = AF_INET;
-              servizio.sin_addr.s_addr = htonl(INADDR_ANY);
-              servizio.sin_port = htons(SERVERPORT);
-              char str1[DIM], str[DIM];
-              int socketfd;
-              socketfd = socket(AF_INET, SOCK_STREAM, 0);
-              connect(socketfd, (struct sockaddr *)&servizio, sizeof(servizio));
-              printf("Inserisci la stringa\n");
-              scanf("%s", str1);
-              write(socketfd, str1, sizeof(str1));
-              read(socketfd,str,sizeof(str));
-              printf("%s", str)
-              close(socketfd);
-              return 0;
-          }
-      </code>
-    </pre>
+    <div class="row justify-content-around divcode">
+      <div class="col-5">
+        <h2 >CLIENT</h2>
+        <pre>
+          <code id="client-code">
+              #include &lt;stdio.h&gt;
+              #include &lt;stdlib.h&gt;
+              #include &lt;sys/socket.h&gt;
+              #include &lt;sys/types.h&gt;
+              #include &lt;netinet/in.h&gt;
+              #include &lt;string.h&gt;
+              #include &lt;unistd.h&gt;
+              #define DIM 50
+              #define SERVERPORT 1313
+              int main(int argc, char **argv) 
+              {
+                  struct sockaddr_in servizio;
+                  servizio.sin_family = AF_INET;
+                  servizio.sin_addr.s_addr = htonl(INADDR_ANY);
+                  servizio.sin_port = htons(SERVERPORT);
+                  char str1[DIM], str[DIM];
+                  int socketfd;
+                  socketfd = socket(AF_INET, SOCK_STREAM, 0);
+                  connect(socketfd, (struct sockaddr *)&servizio, sizeof(servizio));
+                  printf("Inserisci la stringa\n");
+                  scanf("%s", str1);
+                  write(socketfd, str1, sizeof(str1));
+                  read(socketfd,str,sizeof(str));
+                  printf("%s", str)
+                  close(socketfd);
+                  return 0;
+              }
+          </code>
+        </pre>
+      </div>
+      <div class="col-5">
+          <h2>SERVER</h2>
+          <pre>
+            <code class="client-code">
+                #include &lt;stdio.h&gt;
+                #include &lt;stdlib.h&gt;
+                #include &lt;sys/socket.h&gt;
+                #include &lt;sys/types.h&gt;
+                #include &lt;netinet/in.h&gt;
+                #include &lt;string.h&gt;
+                #include &lt;unistd.h&gt;
+                #define DIM 50
+                #define SERVERPORT 1313
+                int main()
+                {
+                    struct sockaddr_in servizio, addr_remoto;
+                    servizio.sin_family=AF_INET;
+                    servizio.sin_addr.s_addr=htonl(INADDR_ANY);
+                    servizio.sin_port=htons(SERVERPORT);
+                    int socketfd, soa, fromlen=sizeof(servizio);
+                    char str[DIM];
+                    socketfd=socket(AF_INET,SOCK_STREAM,0);
+                    bind(socketfd,(struct sockaddr*)&servizio,sizeof(servizio));
+                    listen(socketfd,10);
+
+                    for (; ;)
+                    {
+                        printf("\n\nServer in ascolto...");
+                        fflush(stdout);
+                        soa=accept(socketfd,(struct sockaddr*)&addr_remoto,&fromlen);
+                        read(soa,str,sizeof(str));
+                        printf("Stringa ricevuta: %s\n",str);
+                        close(soa);
+                    }
+                   return 0;   
+                }
+            </code>
+          </pre>
+        </div>
+      </div>
+    </div>
+    
   </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-    integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-    crossorigin="anonymous"></script>
+  <footer class="fixed-footer">
+    <div class="container">
+      <p>Luciano Lin 5E</p>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>
