@@ -1,6 +1,32 @@
+body {}
+
 .scrollable {
     height: 450px;
     overflow: auto;
     border: 1px solid #ccc;
     padding: 10px;
+}
+
+pre {
+    padding: 6px;
+    background-color: #ccc;
+    font-size: medium;
+    border-radius: 14px;
+    padding-top: 20px;
+    overflow-x: auto;
+}
+
+.codice {
+    margin-top: 20px;
+}
+
+.copy-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.container-code{
+    margin: 10px;
+    width: 400px;
+    height: 500px;
 }
