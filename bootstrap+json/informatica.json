@@ -1,0 +1,95 @@
+{
+    "body": {
+      "nav": {
+        "class": "navbar navbar-expand-lg navbar-dark",
+        "children": [
+          {"tag": "div", "class": "container-fluid", "children": [
+            {"tag": "a", "class": "navbar-brand", "href": "index.html", "text": "HOME"},
+            {"tag": "button", "class": "navbar-toggler", "type": "button", "data-bs-toggle": "collapse", "data-bs-target": "#navbarNav", "aria-controls": "navbarNav", "aria-expanded": "false", "aria-label": "Toggle navigation", "children": [
+              {"tag": "span", "class": "navbar-toggler-icon"}
+            ]},
+            {"tag": "div", "class": "collapse navbar-collapse", "id": "navbarNav", "children": [
+              {"tag": "ul", "class": "navbar-nav", "children": [
+                {"tag": "li", "class": "nav-item", "children": [
+                  {"tag": "a", "class": "nav-link active", "href": "informatica.html", "text": "Informatica"}
+                ]},
+                {"tag": "li", "class": "nav-item", "children": [
+                  {"tag": "a", "class": "nav-link active", "href": "sistemi.html", "text": "Sistemi"}
+                ]},
+                {"tag": "li", "class": "nav-item", "children": [
+                  {"tag": "a", "class": "nav-link active", "href": "socket.html", "text": "Socket"}
+                ]},
+                {"tag": "li", "class": "nav-item", "children": [
+                  {"tag": "a", "class": "nav-link active", "href": "glossario.html", "text": "Glossario"}
+                ]}
+              ]}
+            ]}
+          ]}
+        ]
+      },
+      "main": {
+        "class": "container",
+        "children": [
+          {"tag": "div", "class": "text-center", "children": [
+            {"tag": "h1", "class": "display-3 mb-3 text-primary ombra", "children": [
+              {"tag": "strong", "text": "Informatica"}
+            ]}
+          ]},
+          {"tag": "h1", "class": "mt-5", "text": "Modello ISO/OSI"},
+          {"tag": "p", "class": "lead", "text": "Il modello ISO/OSI (International Organization for Standardization/Open Systems Interconnection) è un quadro di riferimento per i protocolli di rete suddiviso in sette livelli distinti."},
+          {"tag": "div", "class": "row", "children": [
+            {"tag": "div", "class": "col-12", "children": [
+              {"tag": "h2", "text": "Livelli del modello ISO/OSI"},
+              {"tag": "table", "class": "table table-striped dark-table", "children": [
+                {"tag": "thead", "children": [
+                  {"tag": "tr", "children": [
+                    {"tag": "th", "text": "Livello"},
+                    {"tag": "th", "text": "Descrizione"}
+                  ]}
+                ]},
+                {"tag": "tbody", "children": [
+                  {"tag": "tr", "children": [
+                    {"tag": "td", "text": "Fisico"},
+                    {"tag": "td", "text": "Trasmissione di bit tramite mezzo fisico"}
+                  ]},
+                  {"tag": "tr", "children": [
+                    {"tag": "td", "text": "Collegamento Dati"},
+                    {"tag": "td", "text": "Indirizzamento fisico e gestione degli errori"}
+                  ]},
+                  {"tag": "tr", "children": [
+                    {"tag": "td", "text": "Rete"},
+                    {"tag": "td", "text": "Instradamento e indirizzamento logico"}
+                  ]},
+                  {"tag": "tr", "children": [
+                    {"tag": "td", "text": "Trasporto"},
+                    {"tag": "td", "text": "Trasferimento dati affidabile e ordinato"}
+                  ]},
+                  {"tag": "tr", "children": [
+                    {"tag": "td", "text": "Sessione"},
+                    {"tag": "td", "text": "Gestione delle sessioni di comunicazione"}
+                  ]},
+                  {"tag": "tr", "children": [
+                    {"tag": "td", "text": "Presentazione"},
+                    {"tag": "td", "text": "Trasformazione e gestione dei dati"}
+                  ]},
+                  {"tag": "tr", "children": [
+                    {"tag": "td", "text": "Applicazione"},
+                    {"tag": "td", "text": "Interfaccia diretta con le applicazioni"}
+                  ]}
+                ]}
+              ]}
+            ]}
+          ]}
+        ]
+      },
+      "footer": {
+        "class": "fixed-footer",
+        "children": [
+          {"tag": "div", "class": "container", "children": [
+            {"tag": "p", "text": "Luciano Lin 5E"}
+          ]}
+        ]
+      }
+    }
+  }
+  

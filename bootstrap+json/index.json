@@ -1,0 +1,77 @@
+{
+    "body": {
+      "nav": {
+        "class": "navbar navbar-expand-lg navbar-dark",
+        "children": [
+          {"tag": "div", "class": "container-fluid", "children": [
+            {"tag": "a", "class": "navbar-brand", "href": "index.html", "text": "HOME"},
+            {"tag": "button", "class": "navbar-toggler", "type": "button", "data-bs-toggle": "collapse", "data-bs-target": "#navbarNav", "aria-controls": "navbarNav", "aria-expanded": "false", "aria-label": "Toggle navigation", "children": [
+              {"tag": "span", "class": "navbar-toggler-icon"}
+            ]},
+            {"tag": "div", "class": "collapse navbar-collapse", "id": "navbarNav", "children": [
+              {"tag": "ul", "class": "navbar-nav", "children": [
+                {"tag": "li", "class": "nav-item", "children": [
+                  {"tag": "a", "class": "nav-link active", "href": "informatica.html", "text": "Informatica"}
+                ]},
+                {"tag": "li", "class": "nav-item", "children": [
+                  {"tag": "a", "class": "nav-link active", "href": "sistemi.html", "text": "Sistemi"}
+                ]},
+                {"tag": "li", "class": "nav-item", "children": [
+                  {"tag": "a", "class": "nav-link active", "href": "socket.html", "text": "Socket"}
+                ]},
+                {"tag": "li", "class": "nav-item", "children": [
+                  {"tag": "a", "class": "nav-link active", "href": "glossario.html", "text": "Glossario"}
+                ]}
+              ]}
+            ]}
+          ]}
+        ]
+      },
+      "main": {
+        "class": "container mt-5 bg-dark text-white rounded-3",
+        "children": [
+          {"tag": "div", "class": "text-center", "children": [
+            {"tag": "h1", "class": "display-2 mb-3 text-primary", "text": "CONCETTI DI NETWORKING"},
+            {"tag": "p", "class": "lead", "text": "Introduzione al concetto di socket e altri concetti di rete."}
+          ]},
+          {"tag": "div", "class": "col-md-7 py-4", "children": [
+            {"tag": "h2", "children": [
+              {"tag": "strong", "text": "Cos'è una socket?"}
+            ]},
+            {"tag": "p", "text": "Una socket è un endpoint per la comunicazione tra due dispositivi in una rete. Utilizzando socket, i computer possono inviare e ricevere dati in modo affidabile."},
+            {"tag": "br"},
+            {"tag": "h2", "children": [
+              {"tag": "strong", "text": "Cosa troverai nel sito?"}
+            ]},
+            {"tag": "ul", "children": [
+              {"tag": "li", "children": [
+                {"tag": "strong", "text": "Socket:"},
+                {"tag": "span", "text": " Come funzionano e le tipologie."}
+              ]},
+              {"tag": "li", "children": [
+                {"tag": "strong", "text": "Modello OSI:"},
+                {"tag": "span", "text": " La pila ISO-OSI e i suoi livelli."}
+              ]},
+              {"tag": "li", "children": [
+                {"tag": "strong", "text": "TCP vs UDP:"},
+                {"tag": "span", "text": " Confronto tra i due protocolli di trasporto."}
+              ]},
+              {"tag": "li", "children": [
+                {"tag": "strong", "text": "Glossario:"},
+                {"tag": "span", "text": " Tutti i termini tecnici spiegati in dettaglio."}
+              ]}
+            ]}
+          ]}
+        ]
+      },
+      "footer": {
+        "class": "fixed-footer",
+        "children": [
+          {"tag": "div", "class": "container", "children": [
+            {"tag": "p", "text": "Luciano Lin 5E"}
+          ]}
+        ]
+      }
+    }
+  }
+  

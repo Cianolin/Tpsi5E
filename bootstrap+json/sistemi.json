@@ -1,0 +1,84 @@
+{
+    "body": {
+      "class": "body-sistemi",
+      "nav": {
+        "class": "navbar navbar-expand-lg navbar-dark",
+        "children": [
+          {
+            "tag": "div",
+            "class": "container-fluid",
+            "children": [
+              { "tag": "a", "class": "navbar-brand", "href": "index.html", "text": "HOME" },
+              { "tag": "button", "class": "navbar-toggler", "type": "button", "data-bs-toggle": "collapse", "data-bs-target": "#navbarNav", "aria-controls": "navbarNav", "aria-expanded": "false", "aria-label": "Toggle navigation", "children": [
+                  { "tag": "span", "class": "navbar-toggler-icon" }
+                ]
+              },
+              { "tag": "div", "class": "collapse navbar-collapse", "id": "navbarNav", "children": [
+                  { "tag": "ul", "class": "navbar-nav", "children": [
+                      { "tag": "li", "class": "nav-item", "children": [
+                          { "tag": "a", "class": "nav-link active", "href": "informatica.html", "text": "Informatica" }
+                        ]
+                      },
+                      { "tag": "li", "class": "nav-item", "children": [
+                          { "tag": "a", "class": "nav-link active", "href": "sistemi.html", "text": "Sistemi" }
+                        ]
+                      },
+                      { "tag": "li", "class": "nav-item", "children": [
+                          { "tag": "a", "class": "nav-link active", "href": "socket.html", "text": "Socket" }
+                        ]
+                      },
+                      { "tag": "li", "class": "nav-item", "children": [
+                          { "tag": "a", "class": "nav-link active", "href": "glossario.html", "text": "Glossario" }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "main": {
+        "class": "p-4",
+        "children": [
+          { "tag": "div", "class": "text-center", "children": [
+              { "tag": "h1", "class": "display-3 mb-3 text-primary ombra", "children": [
+                  { "tag": "strong", "text": "Sistemi e Reti" }
+                ]
+              }
+            ]
+          },
+          { "tag": "h3", "text": "Livello di trasporto" },
+          { "tag": "p", "text": "Il Livello di Trasporto nel modello OSI è fondamentale per gestire la comunicazione end-to-end tra i dispositivi di rete. Esso assicura che i dati vengano trasferiti in modo efficiente e corretto da una fonte a una destinazione." },
+          { "tag": "p", "text": "I protocolli principali sono" }
+        ]
+      },
+      "img": { "src": "tcp-vs-udp.png", "class": "d-block mx-auto imgsistemi" },
+      "row": {
+        "class": "row justify-content-around",
+        "children": [
+          { "tag": "div", "class": "col-4 sistemiPro", "children": [
+              { "tag": "h1", "class": "text-center", "text": "TCP" },
+              { "tag": "p", "text": "TCP è uno dei protocolli principali del livello di trasporto nella suite di protocolli Internet. È progettato per fornire una comunicazione affidabile e orientata alla connessione tra due dispositivi su una rete. Ecco alcune caratteristiche principali di TCP: Affidabilità: TCP garantisce che i dati inviati dal mittente arrivino al destinatario nell'ordine corretto e senza errori. Utilizza meccanismi come il controllo del flusso, il controllo degli errori e la gestione delle congestioni per raggiungere questo obiettivo. Connessione: Prima di trasmettere i dati, TCP stabilisce una connessione tra il mittente e il destinatario tramite un processo di \"stretta di mano a tre vie\". Orientato ai Byte: TCP tratta i dati come un flusso di byte continuo, anziché pacchetti discreti. Applicazioni: È utilizzato per applicazioni che richiedono un trasferimento di dati affidabile, come il web browsing (HTTP/HTTPS), le email (SMTP/IMAP/POP3) e il trasferimento di file (FTP)." }
+            ]
+          },
+          { "tag": "div", "class": "col-4 sistemiPro", "children": [
+              { "tag": "h1", "class": "text-center", "text": "UDP" },
+              { "tag": "p", "text": "UDP è un altro protocollo del livello di trasporto, ma a differenza di TCP, è progettato per essere leggero e senza connessione. Alcune caratteristiche chiave di UDP sono: Velocità: UDP è più veloce di TCP perché non ha il sovraccarico dei meccanismi di controllo della connessione e degli errori. Senza Connessione: UDP non stabilisce una connessione prima di trasmettere i dati. I pacchetti (chiamati datagrammi) vengono inviati indipendentemente e possono arrivare in qualsiasi ordine, o non arrivare affatto. Applicazioni: È ideale per applicazioni che richiedono trasmissioni rapide e per le quali la perdita di alcuni pacchetti non è critica, come lo streaming audio/video, il gaming online e le comunicazioni VoIP." }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "class": "fixed-footer",
+        "children": [
+          { "tag": "div", "class": "container", "children": [
+              { "tag": "p", "text": "Luciano Lin 5E" }
+            ]
+          }
+        ]
+      }
+    }
+  }
+  
