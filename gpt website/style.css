@@ -6,6 +6,7 @@
 
 .form-check-input {
     margin-right: 10px; /* Aggiungi uno spazio tra la checkbox/radio e il testo */
+    padding: 10px;
 }
 
 .form-check-label {

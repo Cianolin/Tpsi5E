@@ -53,7 +53,7 @@ function loadQuiz() {
 
             let quizHTML = '';
             loadedQuestions.forEach((question, index) => {
-                quizHTML += `<div class="mb-4"><h5>${question.question}</h5>`;
+                quizHTML += `<div class="card mb-4 bg-ligth" ><h5>${question.question}</h5>`;
                 question.options = shuffleArray(question.options);
                 question.options.forEach(option => {
                     if (question.type === 'single') {
