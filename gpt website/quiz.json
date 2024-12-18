@@ -1,0 +1,112 @@
+{
+  "questions": [
+    {
+      "question": "Qual è la capitale della Francia?",
+      "type": "single",
+      "options": ["Madrid", "Parigi", "Roma", "Londra"],
+      "correct": "Parigi"
+    },
+    {
+      "question": "Quali di questi sono linguaggi di programmazione?",
+      "type": "multiple",
+      "options": ["CSS", "Python", "Java", "HTML"],
+      "correct": ["Python", "Java"]
+    },
+    {
+      "question": "Chi ha scritto 'La Divina Commedia'?",
+      "type": "single",
+      "options": ["Petrarca", "Dante Alighieri", "Ariosto", "Boccaccio"],
+      "correct": "Dante Alighieri"
+    },
+    {
+      "question": "Quali di questi sono protocolli di rete per accedere ai siti web?",
+      "type": "multiple",
+      "options": ["HTTP", "FTP", "HTTPS", "SMTP"],
+      "correct": ["HTTP", "HTTPS"]
+    },
+    {
+      "question": "Qual è la funzione del sistema operativo?",
+      "type": "single",
+      "options": ["Gestire le risorse hardware e software del computer", "Elaborare i dati", "Creare grafica", "Archiviare dati"],
+      "correct": "Gestire le risorse hardware e software del computer"
+    },
+    {
+      "question": "Quali di questi sono sistemi operativi per desktop?",
+      "type": "multiple",
+      "options": ["Windows", "Linux", "MacOS", "Android"],
+      "correct": ["Windows", "Linux", "MacOS"]
+    },
+    {
+      "question": "Cosa rappresenta il 'binding' nel contesto delle socket?",
+      "type": "single",
+      "options": ["Associare una socket a un indirizzo IP e porta", "Chiudere la connessione", "Ricevere dati dalla rete", "Inviare dati attraverso la rete"],
+      "correct": "Associare una socket a un indirizzo IP e porta"
+    },
+    {
+      "question": "In quale anno è stato scoperto l'America?",
+      "type": "single",
+      "options": ["1492", "1453", "1498", "1520"],
+      "correct": "1492"
+    },
+    {
+      "question": "Qual è il risultato dell'espressione matematica 2+2*2?",
+      "type": "single",
+      "options": ["6", "8", "4", "10"],
+      "correct": "6"
+    },
+    {
+      "question": "Quali di questi sono browser web?",
+      "type": "multiple",
+      "options": ["Chrome", "Firefox", "Safari", "Linux"],
+      "correct": ["Chrome", "Firefox", "Safari"]
+    },
+    {
+      "question": "Quale linguaggio di programmazione è noto per l'uso nelle applicazioni web front-end?",
+      "type": "single",
+      "options": ["Python", "JavaScript", "C++", "Java"],
+      "correct": "JavaScript"
+    },
+    {
+      "question": "Quali di questi sono comandi utilizzati in Linux?",
+      "type": "multiple",
+      "options": ["ls", "cd", "rm", "dir"],
+      "correct": ["ls", "cd", "rm"]
+    },
+    {
+      "question": "Chi ha sviluppato la teoria della relatività?",
+      "type": "single",
+      "options": ["Isaac Newton", "Albert Einstein", "Galileo Galilei", "Nikola Tesla"],
+      "correct": "Albert Einstein"
+    },
+    {
+      "question": "Quali di questi sono linguaggi di markup?",
+      "type": "multiple",
+      "options": ["HTML", "XML", "CSS", "SQL"],
+      "correct": ["HTML", "XML"]
+    },
+    {
+      "question": "Chi ha inventato il telefono?",
+      "type": "single",
+      "options": ["Alexander Graham Bell", "Thomas Edison", "Nikola Tesla", "Guglielmo Marconi"],
+      "correct": "Alexander Graham Bell"
+    },
+    {
+      "question": "Quali di questi sono componenti di un computer?",
+      "type": "multiple",
+      "options": ["CPU", "GPU", "RAM", "BIOS"],
+      "correct": ["CPU", "GPU", "RAM"]
+    },
+    {
+      "question": "Quali di questi sono linguaggi di scripting?",
+      "type": "multiple",
+      "options": ["JavaScript", "Python", "Ruby", "HTML"],
+      "correct": ["JavaScript", "Python", "Ruby"]
+    },
+    {
+      "question": "Quali di questi sono tecnologie di rete?",
+      "type": "multiple",
+      "options": ["Ethernet", "Wi-Fi", "Bluetooth", "HTTP"],
+      "correct": ["Ethernet", "Wi-Fi", "Bluetooth"]
+    }
+  ]
+}

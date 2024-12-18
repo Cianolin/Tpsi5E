@@ -1,0 +1,7 @@
+.bg-success .form-check-label {
+    background-color: #d4edda;
+}
+
+.bg-danger .form-check-label {
+    background-color: #f8d7da;
+}
