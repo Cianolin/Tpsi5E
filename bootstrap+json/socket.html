@@ -1,78 +1,96 @@
-<!DOCTYPE html>
-<html lang="it">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Socket</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title id="title"></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">HOME</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav" id="navbar">
-                    <!-- I link della navbar verranno caricati qui -->
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="container">
-        <div class="text-center">
-            <h1 class="display-3 mb-3 text-primary" id="page-title">
-                <!-- Il titolo verrà caricato qui -->
-            </h1>
-        </div>
-        <div id="sections">
-            <!-- Le sezioni verranno caricate qui -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a id="navbar-home" class="navbar-brand" href="#">HOME</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul id="navbar-list" class="navbar-nav"></ul>
         </div>
     </div>
-    <footer class="fixed-footer">
-        <div class="container">
-            <p>Luciano Lin 5E</p>
-        </div>
-    </footer>
-    
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          fetch('socket.json')
-            .then(response => response.json())
-            .then(data => {
-              function createElement(data) {
-                const element = document.createElement(data.tag || 'div');
-                for (const key in data) {
-                  if (key === 'tag') continue;
-                  if (key === 'children') {
-                    data.children.forEach(childData => element.appendChild(createElement(childData)));
-                  } else if (key === 'text') {
-                    element.textContent = data[key];
-                  } else {
-                    element.setAttribute(key, data[key]);
-                  }
-                }
-                return element;
-              }
-    
-              function renderElement(parentId, data) {
-                const parent = document.getElementById(parentId);
-                parent.appendChild(createElement(data));
-              }
-    
-              document.body.className = data.body.class;
-              renderElement('navbar', data.body.nav);
-              renderElement('main', data.body.main);
-              renderElement('img', data.body.img);
-              renderElement('row', data.body.row);
-              renderElement('footer', data.body.footer);
+</nav>
+<div class="row">
+    <div class="text-center">
+        <h1 id="header" class="display-3 mb-3 text-primary ombra"></h1>
+    </div>
+    <div class="col-md-2">
+        <nav id="navbar-example3" class="h-100 flex-column align-items-stretch pe-4 border-end">
+            <nav id="nav-pills" class="nav nav-pills flex-column"></nav>
+        </nav>
+    </div>
+    <div class="col-md-10 scrollable">
+        <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true" class="scrollspy-example-2" tabindex="0" id="content"></div>
+    </div>
+</div>
+<footer class="fixed-footer">
+    <div class="container">
+        <p id="footer-text"></p>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+<script>
+    fetch('socket.json')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('title').innerText = data.title;
+            document.getElementById('navbar-home').innerText = data.navbar[0].text;
+            document.getElementById('navbar-home').href = data.navbar[0].link;
+
+            const navbarList = document.getElementById('navbar-list');
+            data.navbar.slice(1).forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'nav-item';
+                const a = document.createElement('a');
+                a.className = 'nav-link active';
+                a.href = item.link;
+                a.innerText = item.text;
+                li.appendChild(a);
+                navbarList.appendChild(li);
             });
+
+            document.getElementById('header').innerText = data.header;
+
+            const navPills = document.getElementById('nav-pills');
+            data.sections.forEach(section => {
+                const a = document.createElement('a');
+                a.className = 'nav-link';
+                a.href = '#' + section.id;
+                a.innerText = section.title;
+                navPills.appendChild(a);
+            });
+
+            const content = document.getElementById('content');
+            data.sections.forEach(section => {
+                const div = document.createElement('div');
+                div.id = section.id;
+                const h5 = document.createElement('h5');
+                h5.innerText = section.title;
+                const p = document.createElement('p');
+                p.innerHTML = section.content;
+                div.appendChild(h5);
+                div.appendChild(p);
+                if (section.image) {
+                    const img = document.createElement('img');
+                    img.src = section.image;
+                    img.className = "img-fluid col-md-6 float-md-end mb-3 ms-md-3";
+                    div.appendChild(img);
+                }
+                content.appendChild(div);
+            });
+
+            document.getElementById('footer-text').innerText = data.footer;
         });
-      </script>
+</script>
 </body>
 </html>

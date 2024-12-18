@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">HOME</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" href="informatica.html">Informatica</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="sistemi.html">Sistemi</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="socket.html">Socket</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="glossario.html">Glossario</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="row">
+    <div class="text-center">
+      <h1 class="display-3 mb-3 text-primary ombra"><strong>Socket</strong></h1>
+    </div>
+    <div class="col-md-2">
+      <nav id="navbar-example3" class="h-100 flex-column align-items-stretch pe-4 border-end">
+        <nav class="nav nav-pills flex-column">
+          <a class="nav-link" href="#item-1">Cos'e una </a>
+          <a class="nav-link" href="#item-2">Tipologie di </a>
+          <nav class="nav nav-pills flex-column">
+            <a class="nav-link ms-3 my-1" href="#item-2-1">Stream </a>
+            <a class="nav-link ms-3 my-1" href="#item-2-2">Datagram </a>
+            <a class="nav-link ms-3 my-1" href="#item-2-3">Raw </a>
+          </nav>
+          <a class="nav-link" href="#item-3">Processo di comunicazione</a>
+        </nav>
+      </nav>
+    </div>
+
+    <div class="col-md-10 scrollable">
+      <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true"
+        class="scrollspy-example-2 " tabindex="0">
+        <div id="item-1">
+          <h5>Cos'e una socket</h5>
+          <p>Una socket è </p>
+        </div>
+        <div id="item-2">
+          <h5>Tipologie di socket</h5>
+          <p>Le socket sono di 3 tipi e ciascuno diversa tra loro nella modalità di connessione.</p>
+        </div>
+        <div id="item-2-1">
+          <h5>Stream socket</h5>
+          <p>I stream</p>
+        </div>
+        <div id="item-2-2">
+          <h5>Datagram socket</h5>
+          <p>I datagram socket </p>
+        </div>
+        <div id="item-2-3">
+          <h5>Raw socket</h5>
+          <p>I raw so</p>
+        </div>
+        <div id="item-3">
+          <h5>Processo </h5>
+          <div>
+            <img src="Img3.jpg" class="img-fluid col-md-6 float-md-end mb-3 ms-md-3">
+            <ol>
+              <li>Creazione della Soc</li>
+              <li>Binding (</li>
+              <li>Asc</li>
+              <li>Connessione</li>
+              <li>Acce</li>
+              <li>Comunicazionfono.</li>
+              <li>Chiusura de</li>
+            </ol>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  <footer class="fixed-footer">
+    <div class="container">
+      <p>Luciano Lin 5E</p>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
