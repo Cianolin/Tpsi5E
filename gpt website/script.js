@@ -1,4 +1,3 @@
-// Dichiarazione dei vari elementi della pagina
 const startQuizButton = document.getElementById('startQuizButton');
 const quizContainer = document.getElementById('quizContainer');
 const quizElement = document.getElementById('quiz');
@@ -27,7 +26,7 @@ submitQuizButton.addEventListener('click', () => {
 // Evento al click del pulsante di uscita dal quiz
 exitQuizButton.addEventListener('click', () => {
     clearInterval(timer); // Ferma il timer
-    alert("Exiting the quiz!");
+    alert("Uscita dal quiz!"); // Messaggio di uscita in italiano
     resetQuiz(); // Resetta il quiz
 });
 
@@ -36,11 +35,11 @@ function startTimer() {
     timer = setInterval(() => {
         if (timeLeft <= 0) {
             clearInterval(timer); // Ferma il timer quando il tempo è scaduto
-            alert("Time's up! Submitting your quiz.");
+            alert("Tempo scaduto! Consegna del quiz."); // Messaggio di tempo scaduto in italiano
             highlightCorrectAnswers(); // Evidenzia le risposte corrette
         } else {
             timeLeft--;
-            timerElement.innerText = `Time remaining: ${Math.floor(timeLeft / 60)}:${timeLeft % 60 < 10 ? '0' : ''}${timeLeft % 60}`;
+            timerElement.innerText = `Tempo rimanente: ${Math.floor(timeLeft / 60)}:${timeLeft % 60 < 10 ? '0' : ''}${timeLeft % 60}`;
         }
     }, 1000);
 }
@@ -95,7 +94,7 @@ function highlightCorrectAnswers() {
             });
         }
     });
-    alert("Le risposte corrette verrano evindeziate in verde");
+    alert("Le risposte corrette sono evidenziate in verde."); // Messaggio in italiano
 }
 
 // Funzione per mescolare gli elementi di un array

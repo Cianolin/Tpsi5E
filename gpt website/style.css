@@ -1,7 +1,13 @@
-.bg-success .form-check-label {
-    background-color: #d4edda;
+.form-check {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Aggiungi uno spazio tra le domande */
 }
 
-.bg-danger .form-check-label {
-    background-color: #f8d7da;
+.form-check-input {
+    margin-right: 10px; /* Aggiungi uno spazio tra la checkbox/radio e il testo */
+}
+
+.form-check-label {
+    margin-bottom: 0; /* Rimuovi margine inferiore dalle etichette per allinearli meglio */
 }
